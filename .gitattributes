@@ -1,0 +1,3 @@
+*.mp3 binary -delta
+*.m4a binary -delta
+*.md text eol=lf

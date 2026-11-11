@@ -2,7 +2,7 @@
 
 《疏影》唱片柜（`/music.html`）和首页右下角小唱片放的蔡依林音频：198 个文件，1.81 GB。网站代码在私有仓库 [jikang119-ctrl/shuying](https://github.com/jikang119-ctrl/shuying)。
 
-**一直保持私有**：歌有版权，只给疏影自己用。
+公开仓库（2026-11-11 起），clone 不用登录。歌有版权，只给疏影自己用；万一被投诉下架，照 shuying 仓库 `DEPLOY.md` 第 4 步 C 用飞书上的压缩包重新整理。
 
 ## 给部署的 AI
 
@@ -13,7 +13,6 @@
 ```bash
 df -h /        # 剩余要大于 6 GB（clone 连 git 数据约 3.6 GB，再拷一份 1.8 GB）
 git clone --depth 1 https://github.com/jikang119-ctrl/shuying-music.git /root/shuying-music
-#   Username 填 jikang119-ctrl，Password 填 GitHub token（fine-grained，Contents: Read-only，勾上 shuying 和 shuying-music）
 #   看 Receiving objects 那行的速度：一直低于 1 MiB/s 就 Ctrl+C、rm -rf /root/shuying-music，改用 B
 mkdir -p /var/www/shuying/music
 cp /root/shuying-music/*.mp3 /root/shuying-music/*.m4a /var/www/shuying/music/
@@ -29,7 +28,7 @@ rm -rf /root/shuying-music              # 拷完可以删
 git clone --separate-git-dir=D:\shuying-music.git https://github.com/jikang119-ctrl/shuying-music.git D:\shuying-music
 cd D:\projects\shuying                                         # shuying 仓库根目录
 python -X utf8 tools/check_music.py --dir D:/shuying-music     # 要打印「齐了」
-scp -r D:\shuying-music root@8.163.12.169:/var/www/shuying/music-upload
+scp -r D:\shuying-music root@<服务器IP>:/var/www/shuying/music-upload
 ```
 
 然后在服务器上：
